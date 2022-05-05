@@ -71,8 +71,8 @@ bool* CRC_kod(bool* stak, bool* data, int K, int W) {
 
 
 bool* CRC_8_CCITT(bool* data_bit, int K) {
-	cout << "Èñïîëüçîâàòü ïîëèíîì CRC-8-CCIITT èëè çàäàòü ñâîé?" << endl;
-	cout << "1 - çàäàòü ïîëèíîì, 2 - èñïîëüçîâàòü CRC-8-CCIITT: ";
+	cout << "Ð˜ÑÐ¿Ð¾Ð»ÑŒÐ·Ð¾Ð²Ð°Ñ‚ÑŒ Ð¿Ð¾Ð»Ð¸Ð½Ð¾Ð¼ CRC-8-CCIITT Ð¸Ð»Ð¸ Ð·Ð°Ð´Ð°Ñ‚ÑŒ ÑÐ²Ð¾Ð¹?" << endl;
+	cout << "1 - Ð·Ð°Ð´Ð°Ñ‚ÑŒ Ð¿Ð¾Ð»Ð¸Ð½Ð¾Ð¼, 2 - Ð¸ÑÐ¿Ð¾Ð»ÑŒÐ·Ð¾Ð²Ð°Ñ‚ÑŒ CRC-8-CCIITT: ";
 	int v; cin >> v;
 	int W; bool* stak = NULL;
 
@@ -85,9 +85,9 @@ bool* CRC_8_CCITT(bool* data_bit, int K) {
 			stak[i] = 0;
 	}
 	else {
-		cout << "Ââåäèòå ðàçìåð ïîëèíîìà: "; cin >> W;
+		cout << "Ð’Ð²ÐµÐ´Ð¸Ñ‚Ðµ Ñ€Ð°Ð·Ð¼ÐµÑ€ Ð¿Ð¾Ð»Ð¸Ð½Ð¾Ð¼Ð°: "; cin >> W;
 
-		cout << "Ââåäèòå ïîëèíîì: " << endl;
+		cout << "Ð’Ð²ÐµÐ´Ð¸Ñ‚Ðµ Ð¿Ð¾Ð»Ð¸Ð½Ð¾Ð¼: " << endl;
 		for (int i = 0; i < W; i++) {
 			bool bit;
 			cin >> bit;
@@ -126,23 +126,25 @@ int main() {
 	bool* bit_array = 0;
 	bool* CRC = 0;
 	int K;
-	cout << "Ââåäèòå äëèíó ïîñëåäîâàòåëüíîñòè: ";
+	cout << "Ð’Ð²ÐµÐ´Ð¸Ñ‚Ðµ Ð´Ð»Ð¸Ð½Ñƒ Ð¿Ð¾ÑÐ»ÐµÐ´Ð¾Ð²Ð°Ñ‚ÐµÐ»ÑŒÐ½Ð¾ÑÑ‚Ð¸: ";
 	cin >> K;
 
 	while (true) {
-		cout << "1 - ââåñòè ïîñëåäîâàòåëüíîñòü, 2 - ñãåíåðèðîâàòü," << endl;
-		cout << "3 - ïðîâåðèòü êîíòðîëüíóþ ñóììó: ";
+		cout << "1 - Ð²Ð²ÐµÑÑ‚Ð¸ Ð¿Ð¾ÑÐ»ÐµÐ´Ð¾Ð²Ð°Ñ‚ÐµÐ»ÑŒÐ½Ð¾ÑÑ‚ÑŒ, 2 - ÑÐ³ÐµÐ½ÐµÑ€Ð¸Ñ€Ð¾Ð²Ð°Ñ‚ÑŒ," << endl;
+		cout << "3 - Ð¿Ñ€Ð¾Ð²ÐµÑ€Ð¸Ñ‚ÑŒ ÐºÐ¾Ð½Ñ‚Ñ€Ð¾Ð»ÑŒÐ½ÑƒÑŽ ÑÑƒÐ¼Ð¼Ñƒ: ";
 		int v; cin >> v;
 
 
-		if (v == 1)
+		if (v == 1) {
 			bit_array = gen_random_bit_array(K);
+			CRC = CRC_8_CCITT(bit_array, K);
+		}	
 		else if (v == 2) {
 			bit_array = new bool[K];
 			for (int i = 0; i < K; i++) {
 				bit_array[i] = rand() % 2;
 			}
-			cout << "Ñãåíåðèðîâàíà ïîñëåäîâàòåëüíîñòü áèò:" << endl;
+			cout << "Ð¡Ð³ÐµÐ½ÐµÑ€Ð¸Ñ€Ð¾Ð²Ð°Ð½Ð° Ð¿Ð¾ÑÐ»ÐµÐ´Ð¾Ð²Ð°Ñ‚ÐµÐ»ÑŒÐ½Ð¾ÑÑ‚ÑŒ Ð±Ð¸Ñ‚:" << endl;
 			cout_bit_array(bit_array, K);
 
 			CRC = CRC_8_CCITT(bit_array, K);
